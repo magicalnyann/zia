@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+}
+
+main { 
+	display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+        
+form {
+	text-align: left;
+	margin-top: 20px;
+}
+
+label, textarea {
+	display: block;
+	margin-bottom: 10px;
+}
+
+textarea {
+	width: 900px; 
+	height: 300px; 
+	}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.btn button {
+    border: 2px solid transparent;
+    background-color: #8262D5; 
+    color: #fff; 
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s; 
+    width: 250px; 
+    height: 100px; 
+    font-size: 30px; 
+    font-weight: bold; 
+    border-radius: 10px; 
+    outline: none; 
+} 
+
+a {
+	margin-top: 20px;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+  #logo {
+        text-align: center;
+        margin-top: 50px; /* 로고와 페이지 상단 간격 조절 */
+    }
+    
+
+.field1 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.field2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.field3 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.field4 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.field5 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1em;
+} 
+
+.file-upload {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1em;
+}
+ 
+h1 {
+        text-align: center; 
+        margin-top: 30px;
+    }
+
+    #box {
+        width: 50%;
+        margin: 20px auto; 
+        padding: 20px;
+        background-color: rgb(255, 240, 250);
+        border-radius: 50px; /* 반 원 모양 설정 */
+        text-align: center;
+        margin-top:105px;
+    }
+  
+    #box img {
+    width: 250px;
+    height: auto; /* 유지 비율 */
+    display: block; /* 인라인 요소를 블록 요소로 변환 */
+    margin: 0 auto; /* 좌우 여백을 auto로 설정하여 수평 가운데 정렬 */
+}
+
+ #box p {
+        font-weight: bold; /* 텍스트를 두껍게 설정 */
+    }
+    
+    #faq span {
+        color: red; /* 텍스트를 빨간색으로 설정 */
+        cursor: pointer; /* 텍스트를 마우스로 클릭할 수 있도록 포인터 모양으로 설정 */
+    }
+    
+    #text {
+        margin-top: 15px;
+        text-align: center;
+    }

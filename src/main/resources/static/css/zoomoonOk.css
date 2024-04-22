@@ -1,0 +1,87 @@
+@charset "EUC-KR";
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	overflow: hidden;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+.petal {
+    position: absolute;
+    width: 10px;
+    height: 20px;;
+    animation: fall 5s linear infinite;
+  }
+  
+   @keyframes fall {
+      0% {
+      opacity: 1;
+      transform: translateY(50px) rotate(-15deg);
+    }
+    10% {
+      transform: translateY(200px) rotate(-10deg);
+    }
+    20% {
+      transform: translateY(350px) rotate(-5deg);
+    }
+    30% {
+      transform: translateY(500px) rotate(0deg);
+    }
+    40% {
+      transform: translateY(600px) rotate(5deg);
+    }
+    50% {
+      transform: translateY(700px) rotate(10deg);
+    }
+    60% {
+      transform: translateY(800px) rotate(90deg);
+    }
+    70% {
+      transform: translateY(850px) rotate(180deg);
+    }
+    80% {
+      transform: translateY(900px) rotate(270deg);
+    }
+    90% {
+      transform: translateY(925px) rotate(340deg);
+    }
+    100% {
+      transform: translateY(950px) rotate(360deg);
+    } 
+  }
+   
+h2 {
+	color: rgb(128, 0, 255); 
+    position: fixed; 
+    top: 45%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+     font-size: 18px;
+      margin-top: 300px;
+}
+
+#redirectMessage {
+    color: rgb(128, 0, 255); 
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+     font-size: 18px;
+     margin-top: 302px;
+}
+
+
+
+#boom {
+   width: 70%;
+	display: block;
+	margin-top: 20px;
+	margin-left: 30%;
+}

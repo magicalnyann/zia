@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.my.ziapro.mapper.BoardMapper">
+
+<insert id="attendEvent" parameterType="com.my.ziapro.model.BoardVO"> INSERT INTO BOARD (content, memberName, board_id,regDate) VALUES (#{content}, #{memberName}, #{boardId}, #{regDate}) 
+</insert>
+
+<select id="getAllComments" resultType="com.my.ziapro.model.BoardVO"> SELECT content, memberName, board_id, regDate FROM BOARD
+ </select>
+</mapper>

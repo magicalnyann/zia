@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>장바구니</title>
+	<link rel="stylesheet" type="text/css" href="/css/cart.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<div id="logo">
+		<img src="../images/foomain.jpg" alt="메인로고">
+	</div>
+
+	<h1><span id="memberName"></span>의 장바구니 🛒 </h1>
+
+	<div class="address-box">
+		<h2>배송주소 🏠 </h2>
+		<p id="memberAddr1" th:text="${memberAddr1}"></p>
+		<p id="memberAddr2" th:text="${memberAddr2}"></p>
+		<p id="memberAddr3" th:text="${memberAddr3}"></p>
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			$.ajax({
+				type: 'GET',
+				url: '/shop/cartinfo',
+				dataType: 'json',
+				success: function (response) {
+					console.log('회원 정보를 성공적으로 가져왔습니다:', response);
+
+					$('#memberName').text(response.memberName);
+					$('#memberAddr1').text(response.memberAddr1);
+					$('#memberAddr2').text(response.memberAddr2);
+					$('#memberAddr3').text(response.memberAddr3);
+
+				},
+				error: function () {
+					console.error('회원 정보를 가져오는 데 실패했습니다.');
+				}
+			});
+		}); 
+	</script>
+
+	<table>
+
+		<caption style="visibility: hidden;">상품 정보</caption>
+		<thead style="display: none;">
+			<tr>
+				<th>이미지</th>
+				<th>상품명</th>
+				<th>가격</th>
+				<th>할인</th>
+				<th>재고</th>
+				<th>시작일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<th:block th:each="product : ${list}">
+				<tr>
+					<td><input type="checkbox" class="product-checkbox"></td>
+					<td><img th:src="${product.imagePath}" alt="상품 이미지"></td>
+					<td th:text="${product.pname}"></td>
+					<td th:text="${product.price}"></td>
+					<td th:text="${product.discount}" class="red-text"></td>
+					<td th:text="${product.stock}"></td>
+					<td th:text="${product.startDate}"></td>
+				</tr>
+			</th:block>
+		</tbody>
+	</table>
+
+	<h1>주문서</h1>
+	<div class="money-container">
+		<div>
+			<label for="memberMoney">예치금</label>
+			<p id="memberMoney" th:text="${memberMoney}">원 남았어요</p>
+			<input type="number" id="useMoney" name="useMoney" placeholder="사용할 금액을 입력하세요">
+		</div>
+	</div>
+
+	<div class="point-container">
+		<div>
+			<label for="memberPoint">포인트</label>
+			<p id="memberPoint" th:text="${memberPoint}">원 남았어요</p>
+			<input type="number" id="usePoint" name="usePoint" placeholder="사용할 금액을 입력하세요">
+		</div>
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			$.ajax({
+				type: 'GET',
+				url: '/shop/moneyinfo',
+				dataType: 'json',
+				success: function (response) {
+					console.log('회원 정보를 성공적으로 가져왔습니다:', response);
+					$('#memberMoney').text(response.money + '원 남았어요');
+					$('#memberPoint').text(response.point + '원 남았어요');
+				},
+				error: function () {
+					console.error('회원 정보를 가져오는 데 실패했습니다.');
+				}
+			});
+		});
+	</script>
+	
+<script>
+    $(document).ready(function () {
+        $(".product-checkbox").click(function () {
+            var totalAmount = 0;
+            $(".product-checkbox:checked").each(function () {
+                var price = parseInt($(this).closest("tr").find("td:eq(3)").text());
+                var discount = parseInt($(this).closest("tr").find("td:eq(4)").text());
+                totalAmount += (price + discount);
+            });
+
+            $("#totalAmount").text(totalAmount + "원");
+        });
+
+        $("#orderButton").click(function () {
+            var totalAmount = 0;
+            $(".product-checkbox:checked").each(function () {
+                var price = parseInt($(this).closest("tr").find("td:eq(3)").text());
+                var discount = parseInt($(this).closest("tr").find("td:eq(4)").text());
+                totalAmount += (price - discount);
+            });
+
+            var useMoney = parseInt($("#useMoney").val());
+            var usePoint = parseInt($("#usePoint").val());
+
+            var orderData = {
+                totalAmount: totalAmount,
+                useMoney: useMoney,
+                usePoint: usePoint
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/shop/order",
+                data: orderData,
+                success: function (response) {
+                    window.location.href = "/shop/zoomoonOk";
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.status === 405) {
+                        alert("서버에서 요청을 처리할 수 없습니다. 관리자에게 문의하세요.");
+                    } else {
+                        alert("주문에 실패했습니다.");
+                    }
+                }
+            });
+        }); 
+    });
+</script>
+
+	<div id="totalAmountContainer">
+		<label for="totalAmount">총 주문 금액</label>
+		<p id="totalAmount">0원</p>
+	</div>
+
+	<button id="orderButton" type="submit">주문하기</button>
+</body>
+</html>

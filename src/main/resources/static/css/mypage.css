@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+h3 {
+	margin-left: 285px;
+	margin-top: 95px;
+	font-size: 35px;
+	font-weight: bolder;
+	color: rgb(98, 0, 196);
+}
+
+.roundButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.roundButton button {
+	border-radius: 50%;
+	background-color: rgb(160, 150, 235);
+	color: white;
+	font-weight: bold;
+	padding: 20px;
+	font-size: 28px;
+	border: 1px solid rgb(64, 0, 128);
+	cursor: pointer;
+	margin: 20px;
+	transition: background-color 0.3s, border-color 0.3s;
+}
+
+.roundButton button:hover {
+	background-color: rgb(128, 128, 255);
+	border-color: white;
+}
+
+.buttonDescription {
+	text-align: center;
+	/* 텍스트 가운데 정렬 */
+	font-size: 20px;
+	font-weight: bold;
+	color: #555;
+	margin-top: 1px;
+	/* 위쪽 마진 1px */
+	display: flex;
+	/* 가로 정렬을 위해 flex 사용 */
+	justify-content: center;
+	/* 가로 중앙 정렬 */
+}
+
+.buttonDescription p {
+	display: inline-block;
+	/* 가로 배열을 위해 inline-block 사용 */
+	margin: 0 40px;
+	/* 각 설명 사이의 간격 조절 */
+}
+
+#gomain {
+	display: block;
+	margin: 0 auto;
+	font-size: 24px;
+	padding: 15px 30px;
+	background-color: rgb(160, 150, 235);
+	color: white;
+	border: 1px solid purple;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+	margin-top: 50px;
+	margin-bottom: 150px;
+}
+
+#gomain:hover {
+	background-color: rgb(128, 128, 192);
+	color: #fff;
+}
+
+.myInfo {
+	margin-left: 350px;
+	font-size: 20px;
+}
+
+
+.container {
+	border: 3px solid rgb(113, 68, 136);
+	display: flex;
+	justify-content: center;
+	background-color: rgb(228, 196, 247);
+}
+
+.myDetail {
+	text-align: center;
+	font-size: 18px
+}
+
+.myDetail span {
+	color: purple;
+	font-size: 20px;
+}

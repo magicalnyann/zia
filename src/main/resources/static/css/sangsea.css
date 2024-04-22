@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+.zoomable-img {
+	width: 400px;
+	margin-left: 180px;
+}
+
+
+#productDetail {
+    display: flex;
+	margin-top: 100px;
+}
+
+#productDetail .productImage {
+    margin-right: 40px;
+}
+
+#productDetail .productInfo {
+    display: flex;
+    flex-direction: column; 
+}
+
+#productDetail img.zoomable-img {
+    max-width: 100%; 
+}
+
+#productDetail p,
+#productDetail label,
+#productDetail select,
+#productDetail button {
+    margin-bottom: 20px;
+}
+
+#gDetail,
+#sDetail,
+#mDetail {
+    display: flex;
+    margin-top: 50px;
+}
+
+.zoomable-img {
+    width: 400px;
+}
+
+#gDetail .zoomable-img,
+#sDetail .zoomable-img,
+#mDetail .zoomable-img {
+    margin-right: 20px;
+}
+
+#gDetail,
+#sDetail,
+#mDetail {
+    display: flex;
+    margin-top: 50px;
+}
+
+#gDetail .productInfo,
+#sDetail .productInfo,
+#mDetail .productInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#gDetail p,
+#sDetail p,
+#mDetail p {
+    margin-bottom: 25px;
+}
+
+#gDetail button,
+#sDetail button,
+#mDetail button {
+    margin-top: 50px;
+}
+
+
+.add-it {
+    background-color: transparent;
+    border: 2px solid rgb(128, 0, 255);
+    background-color:  rgb(134, 100, 251);;
+    color: rgb(242, 239, 254);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 80px;
+    width: 180px; 
+    height: 50px;
+    border-radius: 5px;   
+}
+
+.add-it:hover {
+    background-color: rgb(104, 129, 247);
+    color: white;
+}
+

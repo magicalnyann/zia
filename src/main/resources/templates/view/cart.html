@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>장바구니</title>
+   <link rel="stylesheet" type="text/css" href="/css/cart.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+
+<body>
+   <div id="logo">
+      <img src="../images/foomain.jpg" alt="메인로고">
+   </div>
+   <h1><span id="memberName"></span>의 장바구니 🛒 </h1>
+
+   <div class="address-box">
+      <h2>배송주소 🏠 </h2>
+      <p id="memberAddr1"></p>
+      <p id="memberAddr2"></p>
+      <p id="memberAddr3"></p>
+      혹시 이 주소가 아닌가요? <button onclick="changeAddress()">배송주소 변경하기</button>
+   </div>
+
+   <script>
+      function changeAddress() {
+         new daum.Postcode({
+            oncomplete: function (data) {
+               document.getElementById('memberAddr1').value = data.zonecode;
+               document.getElementById('memberAddr2').value = data.roadAddress;
+               document.getElementById('memberAddr3').value = data.jibunAddress;
+            }
+         }).open();
+      }
+   </script>
+
+   <script>
+      $(document).ready(function () {
+         $.ajax({
+            type: 'GET',
+            url: '/user/cartinfo',
+            dataType: 'json',
+
+            success: function (response) {
+               console.log('회원 정보를 성공적으로 가져왔습니다:', response);
+
+               $('#memberName').text(response.memberName);
+               $('#memberAddr1').text(response.memberAddr1);
+               $('#memberAddr2').text(response.memberAddr2);
+               $('#memberAddr3').text(response.memberAddr3);
+            },
+            error: function () {
+               console.error('회원 정보를 가져오는 데 실패했습니다.');
+            }
+         });
+      });
+   </script>
+
+
+   <div id="cartItems">
+      <div th:each="product : ${cart}">
+         <img th:src="${product.imagePath}" alt="상품 이미지">
+         <p>상품명: <span th:text="${product.name}"></span></p>
+         <p th:if="${product.discountPrice != null}">
+            할인 가격: <span th:text="${product.discount}"></span></p>
+         <p th:unless="${product.discount!= null}">
+            가격: <span th:text="${product.price}"></span>
+         </p>
+
+      </div>
+   </div>
+
+
+
+
+<h1>주문서</h1>   
+
+   <div id="paymentMethods">
+      <label for="cardSelect">카드사를 선택하세요</label>
+      <select id="cardSelect">
+         <option value="visa">Visa</option>
+         <option value="mastercard">Mastercard</option>
+         <option value="amex">American Express</option>
+         <option value="discover">Discover</option>
+      </select>
+   </div>
+
+   <script>
+      $('#cardSelect').change(function () {
+         var selectedCard = $(this).val();
+         console.log('선택된 카드:', selectedCard);
+      });
+   </script>
+
+   <div id="depositBox">
+      <label for="depositInput">예치금</label>
+      <input type="text" id="depositInput" placeholder="예치금을 입력하세요" />
+      <span>dallars</span>
+      <label><input type="checkbox" id="depositAll"> 전부 쓰기</label>
+   </div>
+   <div id="balanceBox">
+      <label for="balanceInput">Balance</label>
+      <input type="text" id="balanceInput" th:value="${balance}" disabled />
+      <span>dallars</span>
+   </div>
+
+   <script th:inline="javascript">
+      /*<![CDATA[*/
+      $(document).ready(function () {
+         $('#depositInput').change(function () {
+            var deposit = $(this).val();
+            if (deposit !== '') {
+               $('#balanceInput').val(deposit);
+            }
+         });
+
+         $('#depositAll').change(function () {
+            var deposit = $('#depositInput').val();
+            if ($(this).is(':checked') && deposit !== '') {
+               $('#balanceInput').val(deposit);
+            }
+         });
+      });
+    /*]]>*/
+   </script>
+
+
+   <script>
+      $(document).ready(function () {
+         $('#orderButton').prop('disabled', true);
+         $('#agreePrivacy, #agreeTerms').change(function () { 
+            if ($('#agreePrivacy').prop('checked') && $('#agreeTerms').prop('checked')) {
+               $('#orderButton').prop('disabled', false);
+            } else {             
+               $('#orderButton').prop('disabled', true);
+            }
+         });
+      });
+
+      function calculateTotal() {
+         var totalPrice = 0;
+         var totalDiscount = 0;
+         var totalDeposit = parseFloat(document.getElementById('depositInput').value);
+         var totalPoint = parseFloat(document.getElementById('pointInput').value);
+        
+         $('#cartItems .product').each(function () {
+            var price = parseFloat($(this).find('.price').text());
+            var discount = parseFloat($(this).find('.discount').text());
+
+            totalPrice += price;
+            totalDiscount += discount;
+         });
+
+         var totalAmount = totalPrice - totalDiscount - totalDeposit - totalPoint;
+
+         document.getElementById('totalPrice').textContent = totalPrice.toFixed(2) + ' 어쩌고'; 
+         document.getElementById('totalDiscount').textContent = totalDiscount.toFixed(2) + ' discount '; 
+         document.getElementById('totalDeposit').textContent = totalDeposit.toFixed(2) + ' dollars'; 
+         document.getElementById('totalPoint').textContent = totalPoint.toFixed(2) + ' dollars'; 
+         document.getElementById('totalAmount').textContent = totalAmount.toFixed(2) + ' total amount 어쩌고'; 
+      }
+
+      $(document).ready(function () {
+         calculateTotal();
+      });
+      <button id="orderButton"> 주문하기</button>
+   </script>
+   
+<script>
+	function placeOrder() {
+    // 주문 정보를 가져오는 코드 (예: 장바구니에서 선택된 상품 정보)
+    var orderData = {
+        // 주문 정보를 채워넣습니다.
+    };
+
+    // AJAX를 이용하여 서버에 주문을 전송합니다.
+    $.ajax({
+        type: "POST",
+        url: "/shop/order",
+        contentType: "application/json",
+        data: JSON.stringify(orderData),
+        success: function(response) {
+            console.log("주문이 성공적으로 처리되었습니다.");
+        },
+        error: function(xhr, status, error) {
+            console.error("주문 처리 중 오류가 발생했습니다.");
+        }
+    });
+}
+	</script>
+   
+   
+   
+   
+   
+   
+   
+</body>
+</html>

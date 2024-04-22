@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 가입</title>
+<link rel="stylesheet" type="text/css" href="/css/joinForm.css">
+</head>
+<body>
+<main>  
+
+<div id="logo"> 
+    <img src="../images/foomain.jpg" alt="메인로고">
+</div>
+ 
+<div class="container">
+    <div class="header">
+        <h1 class="header signup-header">회원 가입을 위해 <br>정보를 입력해주세요</h1> 
+    </div>
+    <form id="joinForm" action="/user/join" method="post">
+        <div class="user-info">  
+            <div class="user-info-id">
+                <div>* 아이디</div>
+                <input type="text" id="memberId" name="memberId" required />
+            </div>
+            <div class="user-info-pw">
+                <div>* 비밀번호</div>
+                <input type="password" id="memberPw" name="memberPw" autocomplete="current-password" required>
+            </div>
+            <div class="user-info-name">
+                <div>* 이름</div>
+                <input type="text" id="memberName" name="memberName" required />
+            </div>
+            <div class="user-info-email">
+                <div>* 이메일</div>
+                <input type="email" id="memberMail" name="memberMail" required />
+            </div>
+            <div class="user-info-addr1">
+                <div>* 우편번호</div>
+                <input type="text" id="memberAddr1" name="memberAddr1" required />
+            </div>
+            <div class="user-info-addr2">
+                <div>* 주소</div>
+                <input type="text" id="memberAddr2" name="memberAddr2" required />
+            </div>
+            <div class="user-info-addr3">
+                <div>* 상세주소</div>
+                <input type="text" id="memberAddr3" name="memberAddr3" required />
+            </div>
+            <div class="agree-check">
+                <input type="checkbox" id="agree" name="agree" required />
+                <label for="agree">개인정보 수집 및 이용, 마케팅 활용 선택에 동의합니다.</label>
+            </div>
+        </div>
+        
+        <button type="button" class="button" onclick="join()">
+            <span>가입하기</span>
+        </button>
+    </form>
+</div>
+
+<script>
+function join() {
+    var memberId = document.getElementById("memberId").value;
+    var memberPw = document.getElementById("memberPw").value;
+    var memberName = document.getElementById("memberName").value;
+    var memberMail = document.getElementById("memberMail").value;
+    var memberAddr1 = document.getElementById("memberAddr1").value;
+    var memberAddr2 = document.getElementById("memberAddr2").value;
+    var memberAddr3 = document.getElementById("memberAddr3").value;
+    var agreeChecked = document.getElementById("agree").checked;
+
+    if (memberId === "" || memberPw === "" || memberName === "" || memberMail === "" || memberAddr1 === "" || memberAddr2 === "" || memberAddr3 === "") {
+        alert("모든 필드를 입력해주세요.");
+        return;
+    }
+
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(memberMail)) {
+        alert("올바른 이메일 주소를 입력해주세요.");
+        return;
+    }
+
+    if (!agreeChecked) {
+        alert("개인정보 수집 및 이용에 동의해주세요.");
+        return;
+    }
+
+    var formData = new FormData();
+    formData.append("memberId", memberId);
+    formData.append("memberPw", memberPw);
+    formData.append("memberName", memberName);
+    formData.append("memberMail", memberMail);
+    formData.append("memberAddr1", memberAddr1);
+    formData.append("memberAddr2", memberAddr2);
+    formData.append("memberAddr3", memberAddr3);
+    formData.append("agree", agreeChecked);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/user/join");
+    xhr.send(formData);
+}
+</script>
+
+</main>
+</body>
+</html>

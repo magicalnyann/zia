@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>남자DAY~이벤트페이지</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<link rel="stylesheet" type="text/css" href="/css/lunch.css">
+
+<body>
+	<div id="logo">
+		<img src="../images/foomain.jpg" alt="메인로고">
+	</div>
+<div id="bottom-space"></div>
+
+	<div class="image-container1">
+		<img src="../images/KakaoTalk_20240307_175847468_01.jpg" alt="Main Image1" class="main-image">
+		<img src="../images/KakaoTalk_20240307_175847468_03.jpg" alt="Main Image" class="main-image">
+		<img src="../images/KakaoTalk_20240307_175847468_04.jpg" alt="Main Image" class="main-image">
+		<img src="../images/KakaoTalk_20240307_175847468_05.jpg" alt="Main Image" class="main-image">
+		<img src="../images/KakaoTalk_20240307_175847468_02.jpg" alt="Main Image" class="main-image">
+		<img src="../images/제돈국4.jpg" alt="Main Image" class="main-image">
+		<img src="../images/제돈국.gif" alt="Sample Image" class="main-image" id="gifImage">
+		<img src="../images/KakaoTalk_20240307_175847468_06.jpg" alt="Main Image" class="main-image">
+		<img src="../images/KakaoTalk_20240307_175847468_07.jpg" alt="Main Image" class="main-image">
+	</div>
+	<div id="checkbox-container">
+		<input type="checkbox" id="agree-checkbox">
+		<label for="agree-checkbox">이벤트를 위한 개인정보 제공에 동의 합니다</label><br>
+		<label for="agree-checkbox">제세 공과금 10%는 본인 부담 입니다</label><br>
+		<label for="agree-checkbox">해당 이벤트는 남성 회원분들을 위해 개최 되었으며</label><br>
+		<label for="agree-checkbox">여성 회원 분들은 추첨에서 제외 되는점 양해바랍니다</label>
+	</div>
+
+<div id="comment-section">
+    <textarea id="comment-input" placeholder="이벤트와 관계 없는 글을 작성시 상황의 경중에 따라 민.형사상의 책임을 물을 수 있습니다"></textarea>
+    <button id="comment-submit">참여하기</button>
+</div>
+
+<div id="iam_header">
+	<p> 댓글 </p>
+</div>
+<!-- 댓글영역 -->
+<div class="attendList">
+</div>
+
+  <script>
+        $(document).ready(function () {
+			loadComments();
+			
+            $('#comment-submit').click(function () {
+                var addContent = $('#comment-input').val();
+
+			$.ajax({
+				type: 'POST',
+				url: '/event/eventBoard',
+				data: JSON.stringify({content: addContent}),
+				dataType: 'json',
+				contentType: 'application/json',
+				success: function (response) 
+				{
+					var newComment = '<div class="write-comment">' +
+                        '<p><strong>작성자:</strong> ' + response.memberName + '</p>' +
+                        '<p><strong>작성시간:</strong> ' + response.regDate + '</p>' +
+                        '<p><strong>내용:</strong> ' + response.content + '</p>' +
+                        '</div>';
+
+					 $('.attendList').prepend(newComment); // 새로운 댓글을 맨 위에 추가
+                    alert('댓글이 성공적으로 작성되었습니다.');
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.status === 401) {
+                        alert('로그인 후 이벤트에 참여해 주세요!');
+                        window.location.href = '/user/loginForm';
+                    } else {
+                        alert('댓글 작성에 실패했습니다.');
+                    }
+                }
+            });
+        });
+        
+        function loadComments() {
+			$.ajax({
+				type: 'GET',
+                url: '/event/comments',
+                dataType: 'json',
+                success: function (comments) 
+                {
+                    for (var i = 0; i < comments.length; i++) {
+                        var comment = comments[i];
+                        var commentHTML = '<div class="write-comment">' +
+                            '<p><strong>작성자:</strong> ' + comment.memberName + '</p>' +
+                            '<p><strong>작성시간:</strong> ' + comment.regDate + '</p>' +
+                            '<p><strong>내용:</strong> ' + comment.content + '</p>' +
+                            '</div>';
+                        $('.attendList').append(commentHTML);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('댓글 목록을 불러오는데 실패했습니다.');
+                }
+            });
+        }
+    });
+</script>
+
+</body> 
+</html>

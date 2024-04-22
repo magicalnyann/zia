@@ -1,0 +1,431 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+      #goCart {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 50px; /* 크기는 50픽셀 */
+            height: 50px; /* 크기는 50픽셀 */
+        }
+        #orderButton {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(128, 128, 192);
+            color: #fff;
+            border: none;
+            border-radius: 50%; /* 원 모양으로 만들기 */
+            font-size: 24px; /* 아이콘 크기 */
+            text-align: center;
+            line-height: 50px; /* 버튼 내부 텍스트를 세로 중앙 정렬 */
+            text-decoration: none; /* 링크 밑줄 제거 */
+        }
+        
+.nav {
+	list-style: none;
+	font-weight: bold;
+	float: left;
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	z-index: 5;
+	height: 40px;
+	text-align: center;
+	font-size: 30px;
+}
+
+.nav li {
+	float: left;
+	margin-right: 50px;
+	position: relative;
+	font-size: 30px;
+}
+
+.nav a {
+	display: block;
+	padding: 20px;
+	color: #000000;
+	text-decoration: none;
+	font-size: 25px;
+}
+
+.nav ul {
+	list-style: none;
+	position: absolute;
+	left: -9999px;
+	top: 55px;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.nav ul:hover li {
+	margin-bottom: 5px;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.nav ul li {
+	opacity: 0;
+	transform: translateY(-20px);
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.nav ul a {
+	white-space: nowrap;
+	font-size: 15px;
+	color: #7F51A7;
+	font-weight: bold;
+	padding: 8px 16px;
+	border: 2px solid #7F51A7;
+	border-radius: 10px;
+	transition: background-color 0.3s;
+}
+
+.nav ul a:hover {
+	background-color: #5A5761;
+	color: #fff;
+}
+
+.nav li:hover ul {
+	left: 0%;
+}
+
+.nav li:hover a {
+	text-decoration: underline;
+}
+
+.nav li:hover ul a {
+	text-decoration: none;
+}
+
+.recommendation {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.recommendation img {
+	width: 80%;
+	margin: 10px;
+	cursor: pointer;
+}
+
+#imageBanners {
+	margin-top: 130px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#imageBanners img {
+	width: 80%;
+	cursor: pointer;
+	margin: 10px auto;
+	cursor: pointer;
+	transition: transform 0.5s ease-in-out;
+}
+
+.navButton {
+	font-size: 38px;
+	padding: 0;
+	width: 50px;
+	height: 50px;
+	color: rgb(125, 40, 119);
+	border-radius: 50%;
+	border: 2px solid rgb(125, 40, 119);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.navButtonContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 8px;
+	margin-right: 5px;
+	overflow: hidden;
+}
+
+.navButton:hover {
+	color: rgb(163, 70, 255);
+}
+
+.slide-left {
+	transform: translateX(-100%);
+}
+
+.slide-right {
+	transform: translateX(100%);
+}
+
+#cartButton a {
+	text-decoration: none;
+}
+
+#cartButton span,
+#loginButton span {
+	font-size: 24px;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 5px;
+	color: #7F51A7;
+}
+
+#cartButton,
+#loginButton {
+	display: inline-block;
+}
+
+#loginButton {
+	margin-right: 100px;
+	cursor: pointer;
+}
+
+#cartButton {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+}
+
+#cartButton a {
+	position: relative;
+	display: inline-block;
+	transition: transform 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+#cartButton a:hover {
+	animation: shakeAnimation 0.5s ease-in-out infinite;
+}
+
+#searchButton,
+#cartButton a {
+	cursor: pointer;
+}
+
+@keyframes shakeAnimation {
+
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	25% {
+		transform: translateX(-5px);
+	}
+
+	50% {
+		transform: translateX(8px);
+	}
+
+	75% {
+		transform: translateX(-3px);
+	}
+
+	100% {
+		transform: translateX(-7px);
+	}
+}
+
+#searchBar {
+	position: fixed;
+	top: 100px;
+	right: 10px;
+	z-index: 999;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#searchInput {
+	padding: 8px;
+	border: 2px solid purple;
+	border-radius: 5px;
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+#footer {
+	background-color: #7F51A7;
+	color: white;
+	line-height: 1.5;
+	padding: 10px;
+	text-align: center;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 80px;
+}
+
+.footerButtons {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	padding: 10px;
+	border-radius: 10px;
+	font-size: 25px;
+	/* 버튼의 텍스트 크기를 35픽셀로 설정 */
+	font-weight: bold;
+	/* 텍스트를 두껍게 설정 */
+}
+
+.footerButtons a {
+	margin: 5px;
+	padding: 10px;
+	background-color: #9C84E4;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+.footerButtons .footerButton {
+	margin-right: 60px;
+}
+
+.footerButtons a {
+	transition: background-color 0.5s, color 0.5s;
+}
+
+.footerButtons a:hover {
+	background-color: #555;
+	color: #fff;
+	transition-delay: 0.1s;
+}
+
+#footer a:hover {
+	color: #ddd;
+}
+
+#specialOfferImage {
+	width: 65%;
+}
+
+#titleContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+h3,
+h2,
+#demo {
+	margin-right: 300px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+h3 {
+	display: inline-block;
+	font-size: 24px;
+	font-weight: bold;
+	background-color: lavender;
+	animation: rainbowTransition 1s infinite;
+	margin-left: 30;
+}
+
+.wrap {
+	display: flex;
+	overflow: hidden;
+}
+
+.wrap .rolling-list ul {
+	padding: 0px;
+	display: flex;
+}
+
+.wrap .rolling-list ul li {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+	margin-right: 10px;
+}
+
+.wrap .rolling-list ul li img {
+	width: 300px;
+	height: 400px;
+}
+
+.rolling-list.original {
+	animation: rollingleft1 90s linear infinite;
+}
+
+.rolling-list.clone {
+	animation: rollingleft2 90s linear infinite;
+}
+
+@keyframes rollingleft1 {
+	0% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(-100%);
+	}
+
+	50.01% {
+		transform: translateX(100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes rollingleft2 {
+	0% {
+		transition: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-200%);
+	}
+}
+
+@keyframes rainbowTransition {
+	0% {
+		color: lavender;
+	}
+
+	14% {
+		color: rgb(97, 235, 56);
+	}
+
+	28% {
+		color: rgb(38, 201, 255);
+	}
+
+	42% {
+		color: rgb(255, 0, 255);
+	}
+
+	56% {
+		color: rgb(249, 24, 6);
+	}
+
+	70% {
+		color: #6FFFD6;
+	}
+
+	84% {
+		color: rgb(119, 72, 242);
+	}
+	
+	100% {
+		color: rgb(255, 13, 109);
+	}
+}

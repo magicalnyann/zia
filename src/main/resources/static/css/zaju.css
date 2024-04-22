@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+h1 {  
+    font-weight: bold;
+    font-size: 45px;
+    text-align: center;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+#zaju img {
+   width: 45%; 
+   display: block;
+   margin: 0 auto;
+   margin-top:100px;   
+}
+    
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+     margin-top:50px;  
+}
+
+.button-container button {
+    width: 900px;
+    height: 50px;
+    margin: 20px;
+    font-size: 18px;
+    background-color: lavender;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+   .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 3px solid purple; 
+    border-radius: 20px;
+    padding: 20px;
+    z-index: 1000; 
+    animation: popupAnimation 0.5s ease forwards;
+    width: 700px;
+    height: 150px;
+}
+
+@keyframes popupAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+   
+#gobuttons {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 40px;  
+    z-index: 1000; 
+}
+ 
+#gobuttons a {
+    display: inline-block;
+    margin: 10px; 
+    padding: 15px 20px; 
+    background-color: rgb(125, 92, 211);
+    color: #ffffff; 
+    text-decoration: none; 
+    border-radius: 15px; 
+    transition: background-color 0.3s; 
+}
+
+#gobuttons a:hover {
+    background-color: rgb(128, 128, 255); 
+}
+                              

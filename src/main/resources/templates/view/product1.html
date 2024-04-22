@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>매일매일 구독밥상</title>
+<link rel="stylesheet" type="text/css" href="/css/geaggol.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="logo"> 
+    <img src="../images/foomain.jpg" alt="메인로고">
+</div>
+
+<h1>매일아침 구독밥상</h1>
+ 	  	 
+<div id="productList"></div>
+
+<script>
+$(document).ready(function () {
+    $.ajax({
+        type: 'GET', 
+        url: '/product/Category1', 
+        dataType: 'json', 
+        success: function (products) {
+            for (var i = 0; i < products.length; i++) {
+                var product = products[i];
+                var productHTML = '<div class="product" data-pnum="' + product.pnum + '">' +
+                    '<img src="' + product.imagePath + '" class="zoomable-img">' +
+                    '<p>' + product.pname + '</p>' + 
+                    '<p>' + product.price + '</p>' +
+                    '</div>';
+                    
+                $('#productList').append(productHTML);             
+            }
+                      
+            $('.zoomable-img').hover(function() {
+                $(this).css('transform', 'scale(1.1)'); 
+            }, function() {
+                $(this).css('transform', 'scale(1)'); 
+            });               
+                
+                
+           $('.product').click(function() {
+                var pnum = $(this).data('pnum'); 
+                window.location.href = '/product/productDetail?pnum=' + pnum;
+            });
+        },
+        error: function(xhr, status, error) {
+            alert('상품 목록을 불러오는데 실패했습니다.');
+        }
+    });
+}); 
+</script> 
+
+</body>
+</html>

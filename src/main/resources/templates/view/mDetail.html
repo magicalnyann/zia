@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>밀키트는 지금 15% 할인</title>
+	<link rel="stylesheet" type="text/css" href="/css/sangsea.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<div>
+
+	<div id="logo">
+		<img src="../images/foomain.jpg" alt="메인로고">
+	</div>
+
+<div id="mDetail">
+		<img th:src="${mDetail.imagePath}" class="zoomable-img">
+		<div>
+			<p>품번: <span th:text="${mDetail.pnum}"></span></p>
+			<p>상품명: <span th:text="${mDetail.pname}"></span></p>
+			<p>가격: <span th:text="${mDetail.price}"></span></p>
+			<p>혜택가: <span th:text="${mDetail.discount}" style="color: red;"></span></p>
+			<p>배송코드: <span th:text="${mDetail.scode}"></span></p>
+		</div>
+	</div>
+
+<div id="addcart">
+    <form id="cartForm" action="/shop/insertcart" method="post">
+        <input type="hidden" name="pnum" th:value="${mDetail.pnum}">
+        <input type="hidden" name="imagePath" th:value="${mDetail.imagePath}">
+        <input type="hidden" name="pname" th:value="${mDetail.pname}">
+        <input type="hidden" name="discount" th:value="${mDetail.discount}">
+        <input type="hidden" name="stock" value="1">
+        <button type="submit" class="add-it">장바구니 담기</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".add-it").click(function (e) {
+            var loggedIn = loggedInMember(); 
+            if (!loggedIn) {
+                e.preventDefault();
+                window.location.href = "http://localhost/user/loginForm";
+                alert('로그인 먼저 해 주세요');  
+            }
+        });
+
+        $("#cartForm").submit(function(e) {
+            e.preventDefault(); 
+            $.ajax({
+                url: $(this).attr("action"), 
+                type: $(this).attr("method"), 
+                data: $(this).serialize(), 
+                success: function(response) { 
+                    alert("장바구니에 상품을 추가했습니다."); 
+                },
+                error: function(xhr, status, error) { 
+                    alert("장바구니에 상품을 추가하지 못했습니다. 다시 시도해주세요."); 
+                }
+            });
+        });
+    });
+</script>
+
+
+
+	</body>
+</html>

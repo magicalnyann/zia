@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>마이프룻</title>
+<link rel="stylesheet" type="text/css" href="/css/mypage.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="logo"> 
+		<img src="../images/foomain.jpg" alt="메인로고">
+</div>
+<div>
+<h3>마이페이지</h3>
+
+<div class="container">
+<div class="myDetail">
+        <p><strong>안녕하세요 </strong> <span id="memberName"></span> <strong>고객님!</p>
+        <p><strong>나의 아이디:</strong> <span id="memberId"></span></p>
+        <p><strong>나의 예치금:</strong> <span id="memberMoney"></span></p>
+        <p><strong>나의 포인트:</strong> <span id="memberPoint"></span></p>
+    </div>
+</div> 
+ 
+<script>
+	$(document).ready(function() {
+   	  $.ajax({
+        type: 'GET', 
+        url: '/user/getDetail',
+        dataType: 'json',
+        success: function(response) 
+        {
+			console.log('회원 정보를 성공적으로 가져왔습니다:', response);            
+      			
+      		$('#memberName').text(response.memberName);
+            $('#memberId').text(response.memberID);
+            $('#memberMoney').text(response.money);
+            $('#memberPoint').text(response.point);
+            
+        },
+        error: function() {
+            console.error('회원 정보를 가져오는 데 실패했습니다.');
+        } 
+       });
+    }); 
+</script>
+ 
+ 
+<button id="gomain" onclick="location.href='/user/usermain'">메인페이지 돌아가기 </button>
+
+</body>
+</html>

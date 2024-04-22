@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <title>너의 검색 결과</title>
+ <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/search.css">
+
+</head>
+<body>
+
+<div id="logo"> 
+   		 <img src="../images/foomain.jpg" alt="메인로고">
+</div>
+  
+	
+<div id="searchResults">
+    <div th:if="${products}">
+        <p class="product-count">
+            <span>검색 결과가 </span>
+            <span class="count" th:text="${products.size()}"></span>
+            <span> 건 나왔어요!</span>
+        </p>
+    </div>
+</div>
+
+    
+    	
+    <div id="searchResults">
+        <div class="product-card" th:each="product : ${products}">
+            <div class="product-image">
+                <img th:src="${product.imagePath}" alt="상품 이미지">
+            </div>
+            <div class="product-info">
+                <p class="product-name" th:text="${product.pname}"></p>
+                <p class="product-price" th:text="${product.price}"></p>
+                <p class="product-discount" th:text="${product.discount}"></p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

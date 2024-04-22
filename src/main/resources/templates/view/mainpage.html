@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <title>Main Page</title>
+	<link rel="stylesheet" type="text/css" href="/css/usermain.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="script.js" defer></script>
+</head>
+
+<div>
+	<div id="logo"> 
+		<img src="../images/foomain.jpg" alt="메인로고">
+</div>
+
+
+<div id="searchBar">		
+	<form action="/product/find" method="post">
+    <input type="text" id="searchInput" name="pname" placeholder="없는거 빼고 다있어요">
+<button type="submit" id="searchButton">🔍 </button>
+</form>
+</div>
+
+ 
+	<ul class="nav">
+		<li onmouseover="showDropdown('aboutMenu')" onmouseout="hideDropdown('aboutMenu')">
+			<a href="#">About Us‍</a>
+			<ul id="aboutMenu">
+				<li><a href="/soge">우리가 누구게?</a></li>
+				<li><a href="/megazine">이 달의 매거진</a></li>
+			</ul>
+		</li>
+		<li onmouseover="showDropdown('eventMenu')" onmouseout="hideDropdown('eventMenu')">
+			<a href="#">event‍</a>
+			<ul id="eventMenu">
+				<li><a href="/event/eventMain">진행중인 이벤트</a></li>
+				<li><a href="/event/dugudugu">종료 및 당첨자 발표</a></li>
+			</ul>
+		</li>
+		<li onmouseover="showDropdown('productMenu')" onmouseout="hideDropdown('productMenu')">
+			<a href="#">product</a>
+			<ul id="productMenu">
+				 <li><a href="/product/product1">구독밥상</a></li>
+				<li><a href="/product/product2">밀키트/즉석식품</a></li>
+				<li><a href="/product/product3">간식</a></li>
+				<li><a href="/product/product4">혜택/특가</a></li>
+			</ul>
+		</li>
+		<li onmouseover="showDropdown('memberMenu')" onmouseout="hideDropdown('memberMenu')">
+			<a href="#">Member</a>
+			<ul id="memberMenu">
+				<li><a href="/user/loginForm">로그인</a></li>
+				<li><a href="/user/joinForm">회원가입</a></li>
+			</ul>
+		</li>
+		<li onmouseover="showDropdown('contactMenu')" onmouseout="hideDropdown('contactMenu')">
+			<a href="#">Contact</a>
+			<ul id="contactMenu">
+				<li><a href="/voc/zaju">자주묻는 질문</a></li>
+				<li><a href="/voc/vocmain">고객만족센터 프로세스</a></li>
+			</ul>
+		</li>
+	</ul>
+
+	<div id="imageBanners">
+		<div class="navButtonContainer">
+			<button id="prevButton" class="navButton">◀</button>
+			<img class="bannerImage" src="/images/banner.jpg" alt="1페이지">
+			<img class="bannerImage" src="/images/banner1.jpg" alt="2페이지">
+			<img class="bannerImage" src="/images/banner3.jpg" alt="3페이지">
+			<img class="bannerImage" src="/images/banner4.jpg" alt="4페이지">
+			<img class="bannerImage" src="/images/banner5.jpg" alt="5페이지">
+			<button id="nextButton" class="navButton">▶</button>
+		</div>
+	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			let currentBannerIndex = 0;
+			const banners = document.querySelectorAll('#imageBanners img');
+			const prevButton = document.getElementById('prevButton');
+			const nextButton = document.getElementById('nextButton');
+
+			function changeBanner(direction) {
+				banners[currentBannerIndex].classList.add(direction === 1 ?
+					'slide-left' : 'slide-right');
+
+				currentBannerIndex += direction;
+
+				if (currentBannerIndex < 0) {
+					currentBannerIndex = banners.length - 1;
+				} else if (currentBannerIndex >= banners.length) {
+					currentBannerIndex = 0;
+				}
+
+				banners.forEach(banner => banner.style.display = 'none');
+				banners[currentBannerIndex].style.display = 'block';
+				banners[currentBannerIndex].classList.remove('slide-left', 'slide-right');
+			}
+
+			function autoChangeBanner() {
+				setInterval(function () {
+					changeBanner(1);
+				}, 5000);
+			}
+
+			banners[currentBannerIndex].style.display = 'block';
+			autoChangeBanner();
+
+			if (prevButton) {
+				prevButton.addEventListener('click', function () {
+					changeBanner(-1);
+				});
+			}
+
+			if (nextButton) {
+				nextButton.addEventListener('click', function () {
+					changeBanner(1);
+				});
+			}
+
+			function showDropdown(menuId) {
+				var menu = document.getElementById(menuId);
+				if (menu) {
+					menu.style.display = 'block';
+				}
+			}
+
+			function hideDropdown(menuId) {
+				var menu = document.getElementById(menuId);
+				if (menu) {
+					menu.style.display = 'none';
+				}
+			}
+		});  
+	</script>
+ 
+<h3>요즘 제일 잘나가요👍 </h3>
+  <div class="wrap"> 
+    <div class="rolling-list">
+        <ul>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30001"><img src="/images/추천1.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30002"><img src="/images/추천2.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30003"><img src="/images/추천3.jpg" alt=""></a></div>
+            </li>
+            <li> 
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30004"><img src="/images/추천4.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30005"><img src="/images/추천5.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30006"><img src="/images/추천6.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30008"><img src="/images/추천7.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30007"><img src="/images/추천8.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30009"><img src="/images/추천9.jpg" alt=""></a></div>
+            </li>
+            <li>
+                <div class="image-wrap"><a href="http://localhost/product/mDetail?pnum=30109"><img src="/images/추천10.jpg" alt=""></a></div>
+            </li> 
+        </ul>
+    </div>
+</div>
+
+ <script>
+    let roller = document.querySelector('.rolling-list');
+        roller.id = 'roller1'; 
+ 
+        let clone = roller.cloneNode(true)
+        clone.id = 'roller2';
+        document.querySelector('.wrap').appendChild(clone); 
+ 
+        document.querySelector('#roller1').style.left = '0px';
+        document.querySelector('#roller2').style.left = document.querySelector('.rolling-list ul').offsetWidth + 'px';
+ 
+        roller.classList.add('original');
+        clone.classList.add('clone');
+</script>
+    
+<div id="titleContainer">
+		<h3>오늘의 추천특가📢 </h3>
+</div>
+	<h2> ⏰ 남은 시간</h2>
+	<div id="countdownContainer">
+		<div id="demo"></div>
+	</div>
+	<a href="http://localhost/product/sDetail?pnum=77777"><img id="specialOfferImage" src="../images/빡빡이2.jpg" alt="특가상품 이미지"></a><br>
+	<script>
+		window.onload = function () {
+			var time = 8 * 3600 + 30 * 60 + 15; 
+			var hours = "";
+			var min = "";
+			var sec = "";
+
+			var x = setInterval(function () {
+				hours = parseInt(time / 3600);
+				min = parseInt((time % 3600) / 60);
+				sec = time % 60;
+
+				var demoElement = document.getElementById("demo");
+				var specialOfferImage = document.getElementById("specialOfferImage");
+
+				if (demoElement) {
+					demoElement.innerHTML = hours + "시간 " + min + "분 " + sec + "초";
+					time--;
+
+					if (time < 0) {
+						clearInterval(x);
+						demoElement.innerHTML = "<span style='color: red;'>금일 특가이벤트가 종료 되었습니다</span>";
+						specialOfferImage.src = "/images/다팔림.jpg";
+						specialOfferImage.alt = "시간마감";
+						specialOfferImage.style.cursor = "not-allowed";
+						specialOfferImage.parentElement.href = "#";
+					}
+				}
+			}, 1000);
+		};
+	</script>
+	
+	<footer id="footer">
+		JMT랜드 - 대표 우지아<br>
+		고객센터 010-8665-1031 매일 오전7시~오후7시(年中無休)<br>
+		본 쇼핑몰은 포트폴리오로 실제 구매가 불가능한 사이트 임을 알려 드립니다<br>
+		프로젝트 내 이미지 출처:LovePik, FreePik, giphy, pixabay   / 사용폰트:화이트산스<br>
+		해당 사이트 내 인물의 이미지는 생성형 AI를 이용해 만들었으며 실존 인물과는 관계가 없습니다<br>
+		참고 사이트: 현대 그리팅몰, 마켓컬리<br>
+	</footer>
+	
+</body>
+</html> 

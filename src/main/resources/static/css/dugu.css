@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+#comment-section {
+	text-align: center;
+}
+
+#comment-image {
+	max-width: 50%;
+	display: block;
+	margin: 50px auto;
+}
+
+#comment-input {
+	width: 100%;
+	height: 150px;
+
+	#mainpage-button {
+		width: 300px;
+		height: 60px;
+		font-size: 1.2em;
+		background-color: rgb(174, 81, 191);
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	#mainpage-button:hover {
+		background-color: rgb(124, 124, 190);
+		/* 버튼 위에 마우스를 올렸을 때 배경색을 어둡게 변경합니다. */
+	}
+
+}

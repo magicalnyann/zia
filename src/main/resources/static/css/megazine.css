@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+#logo img { 
+    width: 55%;
+    display: block;
+    margin: 0 auto;
+}
+
+h1 {
+	text-align: center; 
+    margin-top: 50px;
+}
+
+#image-megazin {
+    text-align: center; /* 내부 요소를 가운데 정렬 */
+}
+
+.image-megazin {
+    display: block; 
+    margin: 0 auto;
+    width: 50%; 
+}
+
+.image-megazin:last-child {
+    margin-bottom: 50px; 
+}
+
+
+ #gobuttons2 {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #goButton2 {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 25px;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: rgb(174, 81, 191);
+        border: 1px solid rgb(0, 0, 64);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #goButton2:hover {
+        background-color: rgb(128, 128, 255);
+        border-color: rgb(128, 128, 192);
+    }

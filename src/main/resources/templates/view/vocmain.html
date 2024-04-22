@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
+<script type="text/javascript"></script> 
+
+
+ <link rel="stylesheet" type="text/css" href="/css/vocmain.css">
+</head>
+<body>
+<div id="logo"> 
+    <img src="../images/foomain.jpg" alt="메인로고">
+  </div>
+   
+<div id="images">   
+	<img src="../images/vocpage4.jpg" alt="vocimg1" class="hidden"> 
+    <img src="../images/vocpage3.jpg" alt="vocimg2" class="hidden">
+    <img src="../images/vocpage2.jpg" alt="vocimg3" class="hidden">
+    <img src="../images/vocpage1.jpg" alt="vocimg4" class="hidden">  
+  </div>   
+
+ <div id="lavenderBox">
+ 		<img src="../images/느낌표.png" alt="느낌표">
+        <h4>소비자 분쟁 해결기준</h4><br>
+        <h5>공정거래 위원회 에서 고시한 소비자분쟁해결 기준에 의거</h5><br>
+        <h5>정당한 소비자 피해에 대해서는 교환 또는 환불등의 조치가 가능함을 알립니다</h5>
+        
+        <button id="purpleButton" class="purpleButton">한국소비자원 분쟁해결기준 보기↗</button>
+    </div> 
+<script>     
+    document.getElementById("purpleButton").addEventListener("click", function() {
+    window.location.href = "https://www.kca.go.kr/odr/cm/in/rsltnCrtral.do"; // 이동하고자 하는 사이트 URL로 변경
+});
+</script> 
+
+
+<div id="gobuttons">
+    <a href="http://localhost/voc/zaju" id="mainButton">자주 묻는 질문 보러가기</a>
+</div>
+
+</body> 
+</html>

@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+
+.product-image img {
+	width: 300px;
+	height: 400px;
+}
+
+
+.product-card {
+	width: calc(33.33% - 20px);
+	margin-bottom: 20px;
+	padding: 20px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+}
+
+#searchResults {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.product-count {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 65px;
+}
+
+.product-count .count {
+	color: red;
+}
+
+.product-name {
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+
+.product-price {
+	color: gray;
+	font-size: 16px;
+	font-weight: normal;
+	text-decoration: line-through;
+}
+
+
+.product-discount {
+	color: red;
+	font-size: 20px;
+	font-weight: bold;
+}

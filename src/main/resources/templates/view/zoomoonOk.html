@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>ㅊㅋㅊㅋ</title>
+<link rel="stylesheet" type="text/css" href="/css/zoomoonOk.css">
+</head>
+<body>
+
+<div id="logo"> 
+    <img src="../images/foomain.jpg" alt="메인로고">
+</div>
+
+<div id="boom">
+<img src="../images/빵빵.jpg" alt="main">
+</div>
+
+
+<script>
+  function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
+  function createPetal() {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    const randomX = Math.random() * window.innerWidth;
+    petal.style.left = randomX + 'px';
+    petal.style.top = '-20px'; // Initial position set above the screen
+    petal.style.backgroundColor = getRandomColor(); // Set random color
+    document.body.appendChild(petal);
+    setTimeout(() => {
+      petal.remove();
+    }, 6000); // Remove after 3 seconds
+  }
+
+  setInterval(createPetal, 200); 
+</script>
+
+
+
+<h2> 축하해요! 구매가 접수 되었어요 </h2>
+<h3 id="redirectMessage">5초 후 메인 페이지로 이동 할게요.</h3>
+<script>
+  var count = 5; 
+
+  function countdown() {
+    document.getElementById("redirectMessage").innerHTML = count + "초 후 메인 페이지로 이동 할게요.";
+    count--;
+    if (count >= 0) {
+      setTimeout(countdown, 1000); 
+    } else {
+      window.location.href = "http://localhost/user/usermain"; 
+    }	
+  }
+  // countdown 함수 호출
+  countdown();
+</script>
+
+
+</body>
+</html>

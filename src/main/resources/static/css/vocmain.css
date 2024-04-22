@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: left;
+	margin-top: 90px;
+}
+
+h2 {
+	text-align: left;
+	margin-top: 95px;
+} 
+
+#lavenderBox {
+	background-color: lavender;
+	padding: 20px;
+	width: 65%;
+	margin: 0 auto;
+	text-align: center;
+	border-radius: 10px;
+	position: relative;
+	z-index: 2;
+	margin-bottom: 50px;
+}
+
+#lavenderBox img {
+	width: 180px;
+	height: auto;
+	/* 유지 비율 */
+}
+
+/* 보라색 버튼 스타일 설정 */
+.purpleButton {
+	background-color: purple;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 10px;
+	/* 버튼 위쪽 여백 */
+}
+
+#lavenderBox h4,
+#lavenderBox h5 {
+	margin: 0;
+	padding: 0;
+}
+
+#lavenderBox h4 {
+	font-size: 30px;
+}
+
+#lavenderBox h5 {
+	font-size: 18px;
+}
+
+#images img {
+	width: 55%;
+	height: auto;
+	display: block;
+	margin: 50px auto;
+	border-radius: 80px;
+	border: 50px solid white;
+}
+
+#gobuttons {
+	text-align: center;
+	/* 가운데 정렬 */
+}
+
+#gobuttons a {
+	display: inline-block;
+	margin: 15px;
+	padding: 10px 20px;
+	background-color: #8262D5;
+	color: #ffffff;
+	text-decoration: none;
+	border-radius: 15px;
+}

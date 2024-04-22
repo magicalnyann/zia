@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#logo img {
+	width: 55%;
+	display: block;
+	margin: 0 auto;
+}
+
+#bottom-space {
+    height: 70px; 
+}
+
+.image-container {
+	text-align: center;
+}
+
+.main-image {
+	max-width: 43%;
+	display: block;
+	margin: 0 auto;
+	margin-top: 150px;
+}
+
+.image-container1 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 1300px;
+}
+
+.main-image {
+	margin: 10px;
+}
+
+
+#comment-input {
+	width: 60%;
+	height: 150px;
+	resize: vertical;
+	display: block;
+	margin: 0 auto;
+	margin-top: 20px;
+	border: 2px solid rgb(197, 22, 254);
+	border-radius: 10px; 
+}
+
+#comment-submit {
+	width: 150px;
+	height: 50px;
+	margin-left: 250px;
+	margin-top: 20px;
+	vertical-align: top;
+	display: inline-block;
+	background-color: rgb(152, 98, 253);  
+    border-radius: 10px; 
+    font-weight: bolder;
+    transition: background-color 0.3s ease; 
+}
+ 
+#comment-submit:hover {
+    background-color: rgb(128, 128, 255); 
+}
+
+#checkbox-container {
+	text-align: center;
+}
+
+#agree-checkbox {
+	margin-right: 10px;
+	font-size: 15px;
+}
+
+#checkbox-container label {
+	font-size: 15px;
+}
+
+label {
+	font-size: 20px;
+	font-weight: bold;
+	color: rgb(255, 0, 0);
+}
+
+#iam_header {
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgb(109, 85, 247);
+    width: 100%;
+    margin-top: 25px;
+}
+#iam_header p {
+    color: white; 
+    margin: 0; 
+    padding: 10px; 
+}
+
+.attendList {
+    width: 100%;
+}
+
+.write-comment {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.write-comment:nth-child(even) {
+    background-color: rgb(196, 203, 253); 
+    margin-top: 5px;
+}
+
+.write-comment:nth-child(odd) {
+    background-color: rgb(213, 191, 253);
+    margin-top: 5px;
+
+}
+
+.write-comment::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px dashed magenta;
+}

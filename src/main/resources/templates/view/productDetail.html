@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상세페이지</title>
+<link rel="stylesheet" type="text/css" href="/css/sangsea.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="logo"> 
+    <img src="../images/foomain.jpg" alt="메인로고">
+</div>
+
+<div id="productDetail">
+    <img th:src="${productDetail.imagePath}" class="zoomable-img">
+    <div>
+        <p>품번: <span th:text="${productDetail.pnum}"></span></p>
+        <p>상품명: <span th:text="${productDetail.pname}"></span></p>
+        <p>가격: <span th:text="${productDetail.price}"></span>(KRW)</p>
+        <p>배송코드: <span th:text="${productDetail.scode}"></span></p>   
+         <p>구독 시작일: <input type="date" id="startDate" min="" max=""></p>
+        <label for="options">옵션 선택:</label>
+        <select id="options">
+           <option value="참새">참새(0.7사이즈 소식좌, 어린이 추천)</option>
+            <option value="고양이">고양이 (일반 성인 양에 딱 맞아요)</option>
+            <option value="불곰">불곰(1.5배 더 넣어 드립니다)</option>
+            <option value="고질라">고질라(2배 더 넣어 드립니다)</option>
+        </select>  
+        
+            <p id="totalAmount"> <span id="totalPriceValue"></span> </p>
+        <p id="subscriptionStart"> <span id="subscriptionStartValue"></span>부터 만나요</p>     
+    </div>
+</div>
+
+<div id="addcart">
+    <form id="cartForm" action="/shop/insertcart" method="post">
+        <input type="hidden" name="pnum" th:value="${productDetail.pnum}">
+        <input type="hidden" name="imagePath" th:value="${productDetail.imagePath}">
+        <input type="hidden" name="pname" th:value="${productDetail.pname}">
+        <input type="hidden" name="price" th:value="${productDetail.price}">
+        <input type="hidden" name="startDate"th:value="${productDetail.startDate}">
+        <input type="hidden" name="stock" value="1">
+        <button type="submit" class="add-it">장바구니 담기</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".add-it").click(function (e) {
+            var loggedIn = loggedInMember(); 
+            if (!loggedIn) {
+                e.preventDefault();
+                window.location.href = "http://localhost/user/loginForm";
+                alert('로그인 먼저 해 주세요');  
+            }
+        });
+
+        $("#cartForm").submit(function(e) {
+            e.preventDefault(); 
+            $.ajax({
+                url: $(this).attr("action"), 
+                type: $(this).attr("method"), 
+                data: $(this).serialize(), 
+                success: function(response) { 
+                    alert("장바구니에 상품을 추가했습니다."); 
+                },
+                error: function(xhr, status, error) { 
+                    alert("장바구니에 상품을 추가하지 못했습니다. 다시 시도해주세요."); 
+                }
+            });
+        });
+    });
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var startDateInput = document.getElementById('startDate');
+    var currentDate = new Date();
+    var threeDaysLater = new Date(currentDate.getTime() + (3 * 24 * 60 * 60 * 1000));
+    var fourteenDaysLater = new Date(currentDate.getTime() + (14 * 24 * 60 * 60 * 1000));
+
+    var minDate = new Date(threeDaysLater);
+    var maxDate = new Date(fourteenDaysLater);
+
+    startDateInput.setAttribute('min', minDate.toISOString().split('T')[0]);
+    startDateInput.setAttribute('max', maxDate.toISOString().split('T')[0]);
+
+    startDateInput.addEventListener('change', function () {
+        var selectedDate = new Date(startDateInput.value);
+        var dayOfWeek = selectedDate.getDay();
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) { 
+            alert('토요일 및 일요일에는 주문이 불가능합니다.');
+            startDateInput.value = '';
+        }
+    });
+
+ 
+ function displaySelectedDate() {
+        var selectedDate = document.getElementById('startDate').value;
+        var subscriptionStartValueSpan = document.getElementById('subscriptionStartValue');
+        subscriptionStartValueSpan.textContent = selectedDate;
+    }
+
+    document.getElementById('startDate').addEventListener('change', displaySelectedDate);
+});
+</script>
+
+</body>
+</html>
